@@ -1,10 +1,8 @@
-package ru.geekbrains.main.site.at.lesson3_HW;
+package ru.geekbrains.main.site.at.lesson4_HW;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,7 +36,7 @@ public class BaseTestClass {
         // driver.findElement(By.className("button>[class=\"c9e3 _311d\"]")).click();
 
         driver.findElement(By.cssSelector("button>[class=\"svg-icon icon-popup-close-button \"]")).click();
-        wait10second = new WebDriverWait(driver, 10);
+        //wait10second = new WebDriverWait(driver, 10);
     }
 
     @AfterEach

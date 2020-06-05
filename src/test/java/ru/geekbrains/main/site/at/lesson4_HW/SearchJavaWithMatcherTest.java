@@ -1,17 +1,21 @@
-package ru.geekbrains.main.site.at.lesson3_HW;
+package ru.geekbrains.main.site.at.lesson4_HW;
 /*  Перейти на сайт https://geekbrains.ru/courses    Нажать на кнопку Поиск  В поле Поиск ввести текст: java
 Проверить что на странице: Профессий не менее чем 2  Курсов более 15 Вебинаров больше чем 180, но меньше 300
 В вебинарах отображается первым “Java Junior. Что нужно знать для успешного собеседования?”
 Блогов более 300 Форумов не 350  Тестов не 0
 В Проектах и компаниях отображается GeekBrains*/
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
-public class SearchJavaTest extends BaseTestClass{
+
+public class SearchJavaWithMatcherTest extends BaseTestClass{
 
     @Test
     void events() {
@@ -23,7 +27,7 @@ public class SearchJavaTest extends BaseTestClass{
         WebElement inputSearch = driver.findElement(By.cssSelector("[class=\"search-panel__search-field\"]"));
         inputSearch.sendKeys("java");
 
-        wait10second.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.xpath(".//header/h2[text()='Проекты и компании']")),"Проекты и компании"));
+        //wait10second.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.xpath(".//header/h2[text()='Проекты и компании']")),"Проекты и компании"));
 
         WebElement professions = driver.findElement(By.cssSelector("[id=\"professions\"] h2"));
         WebElement courses = driver.findElement(By.xpath(".//header/h2[text()='Курсы']"));
@@ -39,16 +43,15 @@ public class SearchJavaTest extends BaseTestClass{
         wait10second.until(ExpectedConditions.textToBePresentInElement(blogs,"Блоги"));
         wait10second.until(ExpectedConditions.textToBePresentInElement(forum,"Форум"));
         wait10second.until(ExpectedConditions.textToBePresentInElement(tests,"Тесты"));
-        */
+*/
 
 
 
         WebElement profAmount = driver.findElement(By.cssSelector("[id='professions'] [data-tab='professions'] >span"));
-        String profAmountStr = profAmount.getText();
-        System.out.print(profAmountStr);
-        int profAmountInt= Integer. parseInt(profAmountStr);
-        System.out.print(profAmountInt);
-        Assertions.assertTrue(2<=profAmountInt,"тру-асерт: профессий меньше 2");
+        System.out.print(Integer.parseInt(profAmount.getText()));
+        Assertions.assertTrue(2<=Integer.parseInt(profAmount.getText()),"тру-асерт: профессий меньше 2");
+        int amountToCompare =  Integer.parseInt(profAmount.getText());
+        assertThat(amountToCompare, is(greaterThan(2)));
         profAmount.click();
 
     }
